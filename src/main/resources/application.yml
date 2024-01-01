@@ -3,7 +3,7 @@ spring:
     include: api, db
 
   jpa:
-    show-sql: true
+    show-sql: false
     properties:
       hibernate:
         format_sql: true
@@ -23,5 +23,9 @@ spring:
     med-term-land-endpoint: ${med-term-land-endpoint}
     med-term-temp-endpoint: ${med-term-temp-endpoint}
     data-type: ${data-type}
+
+    mvc:
+      view:
+        suffix: .html
 
 

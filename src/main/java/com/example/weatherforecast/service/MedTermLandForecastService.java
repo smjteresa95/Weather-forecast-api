@@ -44,7 +44,7 @@ public class MedTermLandForecastService {
 
         //기존에 데이터가 존재하면 업데이트
         if(existingForecast.isPresent()){
-            updateExistingForecast(Mapper.medTermLandForecastToDto(existingForecast.get()));
+            repository.updateByRegIdAndBaseDateTime(existingForecast.get());
             LOGGER.info("data updated to the database");
         } else {
             repository.save(responseDto.toEntity());
@@ -106,37 +106,5 @@ public class MedTermLandForecastService {
         return json.toString();
     }
 
-
-    private void updateExistingForecast(MedTermLandForecastResponseDto responseDto) {
-        repository.updateByRegIdAndBaseDateTime(
-                responseDto.getRegId(),
-                responseDto.getBaseDateTime(),
-                responseDto.getRnSt3Am(),
-                responseDto.getRnSt3Pm(),
-                responseDto.getWf3Am(),
-                responseDto.getWf3Pm(),
-                responseDto.getRnSt4Am(),
-                responseDto.getRnSt4Pm(),
-                responseDto.getWf4Am(),
-                responseDto.getWf4Pm(),
-                responseDto.getRnSt5Am(),
-                responseDto.getRnSt5Pm(),
-                responseDto.getWf5Am(),
-                responseDto.getWf5Pm(),
-                responseDto.getRnSt6Am(),
-                responseDto.getRnSt6Pm(),
-                responseDto.getWf6Am(),
-                responseDto.getWf6Pm(),
-                responseDto.getRnSt7Am(),
-                responseDto.getRnSt7Pm(),
-                responseDto.getWf7Am(),
-                responseDto.getWf7Pm(),
-                responseDto.getRnSt8(),
-                responseDto.getWf8(),
-                responseDto.getRnSt9(),
-                responseDto.getWf9(),
-                responseDto.getRnSt10(),
-                responseDto.getWf10());
-        }
 
     }

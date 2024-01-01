@@ -16,6 +16,8 @@
 	<properties>
 		<java.version>17</java.version>
 	</properties>
+
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -107,8 +109,13 @@
 						<configuration>
 							<backend>html</backend>
 							<doctype>book</doctype>
+
+							<sourceDirectory>${basedir}/src/main/docs/asciidoc</sourceDirectory>
+							<outputDirectory>${project.build.directory}/generated-docs</outputDirectory>
+
 						</configuration>
 					</execution>
+
 				</executions>
 				<dependencies>
 					<dependency>
@@ -131,7 +138,8 @@
 						</goals>
 						<configuration>
 							<outputDirectory>
-								${project.build.outputDirectory}/static/docs
+<!--								${project.build.outputDirectory}/static/docs-->
+								${basedir}/src/main/resources/static/html/docs
 							</outputDirectory>
 							<resources>
 								<resource>

@@ -1,0 +1,9 @@
+spring:
+  api:
+    short-term-key: z6v2MzH2YS/5bL9n4eG55s8fZa9oFLOO5ld3tVHUtDdxpw8AA0huQsXvcCdKmeFVPL19Nwf4QvzhEXfMyZ0KCQ==
+    short-term-endpoint: https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst
+    ultra-short-term-endpoint: https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtFcst
+    med-term-key: z6v2MzH2YS/5bL9n4eG55s8fZa9oFLOO5ld3tVHUtDdxpw8AA0huQsXvcCdKmeFVPL19Nwf4QvzhEXfMyZ0KCQ==
+    med-term-land-endpoint: http://apis.data.go.kr/1360000/MidFcstInfoService/getMidLandFcst
+    med-term-temp-endpoint: http://apis.data.go.kr/1360000/MidFcstInfoService/getMidTa
+    data-type: JSON
