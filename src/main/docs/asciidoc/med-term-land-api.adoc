@@ -10,7 +10,7 @@ include::{snippets}/med-term/land-forecast/save/http-request.adoc[]
 == 요청 파라미터
 `regionCode` - 예보가 요청되는 지리적 지역을 나타내는 고유 코드입니다. 자세한 코드는 https://docs.google.com/spreadsheets/d/1IXZogqaESO7pLGQFIhN0Ic3A16VpqwXA/edit?usp=sharing&ouid=113873634025863855868&rtpof=true&sd=true[지역 코드 표]를 참조하세요.
 
-=== 응답결과git
+=== 응답결과
 include::{snippets}/med-term/land-forecast/save/http-response.adoc[]
 
 == 중기육상예보 조회
