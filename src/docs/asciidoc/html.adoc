@@ -1,0 +1,11 @@
+= 기상청 예보 API
+:doctype: book
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 2
+:seclinks:
+
+include::med-term-land-api.adoc[]
+include::med-term-temp-api.adoc[]
+include::short-term-api.adoc[]
+include::ultra-short-term-api.adoc[]

@@ -111,17 +111,17 @@ public class ShortTermForecastApiClient {
             // 필드에 데이터 설정
             switch (category) {
                 case "POP":
-                    dto.setPOP(new BigDecimal(value));
+                    dto.setPOP(value);
                     break;
                 case "PTY":
-                    dto.setPTY(new BigDecimal(value));
+                    dto.setPTY(value);
                     break;
                 case "PCP":
                     String rn1Value = value.replace("mm", "").trim();
                     if (rn1Value.isEmpty() || rn1Value.equals("강수없음")) {
-                        dto.setPCP(BigDecimal.ZERO);
+                        dto.setPCP("0");
                     } else {
-                        dto.setPCP(new BigDecimal(rn1Value));
+                        dto.setPCP(rn1Value);
                     }
                     break;
                 case "REH":
@@ -131,7 +131,7 @@ public class ShortTermForecastApiClient {
                     dto.setSNO(new BigDecimal(value));
                     break;
                 case "SKY":
-                    dto.setSKY(new BigDecimal(value));
+                    dto.setSKY(value);
                     break;
                 case "TMP":
                     dto.setTMP(new BigDecimal(value));
@@ -163,31 +163,3 @@ public class ShortTermForecastApiClient {
     }
 }
 
-//    public UltraShortTermForecastResponseDto parseShortTermForecastJsonData(String jsonData) throws JsonProcessingException, ParseException {
-//
-//        UltraShortTermForecastResponseDto dto = new UltraShortTermForecastResponseDto();
-//
-//        JSONParser parser = new JSONParser();
-//        JSONObject obj = (JSONObject) parser.parse(jsonData);
-//
-//        //필요한 데이터 추출
-//        JSONObject parseResponse = (JSONObject) obj.get("response");
-//        JSONObject parseBody = (JSONObject) parseResponse.get("body");
-//        JSONObject parseItems = (JSONObject) parseBody.get("items");
-//        JSONArray parseItem = (JSONArray) parseItems.get("item");
-//
-//        for (Object itemObj : parseItem) {
-//            JSONObject weather = (JSONObject) itemObj;
-//            String category = (String) weather.get("category");
-//            String value = (String) weather.get("fcstValue");
-//
-//            String baseDate = (String) weather.get("baseDate");
-//            String baseTime = (String) weather.get("baseTime");
-//            String fcstDate = (String) weather.get("fcstDate");
-//            String fcstTime = (String) weather.get("fcstTime");
-//
-//            dto.setBaseDate(baseDate);
-//            dto.setBaseTime(baseTime);
-//            dto.setFcstDate(fcstDate);
-//            dto.setFcstTime(fcstTime);
-//    }

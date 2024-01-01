@@ -65,7 +65,7 @@ public class UltraShortTermForecastService {
                 requestDto.getRegionCode(), requestDto.getBaseDate(), fcstTime
         );
 
-        if (!forecastOptional.isPresent()) {
+        if (forecastOptional.isEmpty()) {
             LOGGER.error("No data found for the specified criteria");
             return "No data available";
         }
@@ -83,39 +83,40 @@ public class UltraShortTermForecastService {
 
         // JSON 객체 생성
         JSONObject json = new JSONObject();
-        json.put("시", region.getLevel1());
-        json.put("구", region.getLevel2());
-        json.put("동/면/읍", region.getLevel3());
+        json.put("level1", region.getLevel1()); //시
+        json.put("level2", region.getLevel2()); //구
+        json.put("level3", region.getLevel3()); //동/면/읍
 
-        json.put("발표일자", responseDto.getBaseDate());
-        json.put("발표시각", responseDto.getBaseTime());
-        json.put("발표일자", responseDto.getFcstDate());
-        json.put("발표시각", responseDto.getFcstTime());
+        json.put("baseDate", responseDto.getBaseDate()); //기준일
+        json.put("baseTime", responseDto.getBaseTime()); //기준시간
+        json.put("fcstDate", responseDto.getFcstDate()); //발표일자
+        json.put("fcstTime", responseDto.getFcstTime()); //발표시간
 
         int rn1Num = responseDto.getRn1().intValue();
         String pcpCode;
         if(rn1Num == 0) {
             pcpCode = "강수없음";
         } else pcpCode = responseDto.getRn1().toString();
-        json.put("1시간 강수량 (mm)", pcpCode);
+        json.put("pcp", pcpCode); //1시간 강수량 (mm)
 
-        int skyNum =  responseDto.getSky().intValue();
+        String skyNum = String.valueOf(responseDto.getSky());
         String skyCode = SkyCondition.getDescriptionByCode(skyNum);
-        json.put("하늘상태", skyCode);
+        json.put("sky", skyCode); //하늘상태
 
-        json.put("습도 (%)", responseDto.getReh());
-        json.put("풍속(동서성분) (m/s)", responseDto.getUuu());
-        json.put("풍속(남북성분) (m/s)", responseDto.getVvv());
-        json.put("풍향 (deg)", responseDto.getVec());
-        json.put("풍속 (m/s)", responseDto.getWsd());
-        json.put("기온", responseDto.getT1h());
+        json.put("reh", responseDto.getReh()); //습도 (%)
+        json.put("uuu", responseDto.getUuu()); //풍속(동서성분) (m/s)
+        json.put("vvv", responseDto.getVvv()); //풍속(남북성분) (m/s)
+        json.put("vec", responseDto.getVec()); //풍향 (deg)
+        json.put("wsd", responseDto.getWsd()); //풍속 (m/s)
+        json.put("t1h", responseDto.getT1h()); //기온
 
-        int ptyNum = responseDto.getPty().intValue();
+        String ptyNum = String.valueOf(responseDto.getPty());
         String ptyCode = PrecipitationType.getDescriptionByCode(ptyNum);
-        json.put("강수형태", ptyCode);
+        json.put("pty", ptyCode); //강수형태
 
-        json.put("낙뢰", responseDto.getLgt());
+        json.put("lgt", responseDto.getLgt()); //낙뢰
 
+        LOGGER.info("parsed json data : {}", json);
         return json.toString();
 
     }

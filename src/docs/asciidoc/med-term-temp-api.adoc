@@ -1,0 +1,63 @@
+= 중기기온예보
+
+== 중기예보저장
+기상청 OPEN API에서 단기 날씨 예보 데이터를 얻어와 데이터베이스에 저장합니다.
+
+=== 요청 인자
+* `regionCode` - 예보가 요청되는 지리적 지역을 나타내는 고유 코드입니다. 자세한 코드는 https://example.com/region-codes[지역 코드 표]를 참조하세요.
+* `baseDate` - 예보 데이터가 요청되는 날짜입니다. YYYYMMDD 형식이어야 합니다.
+* `baseTime` - 예보 데이터가 요청되는 시간입니다. 허용되는 값은 0200, 0500, 0800, 1100, 1400, 1700, 2000, 2300입니다.
+
+=== 요청 예시
+[source,http]
+----
+POST /api/weather-forecast/short-term?regionCode=110&baseDate=20240101&baseTime=0800
+----
+
+=== 응답
+예보 데이터 저장 성공 시 HTTP 상태 200 OK를 반환합니다.
+
+
+== 중기예보조회
+인자로 받은 `regionCode`, `baseDate`, `baseTime` 매개변수를 기반으로 데이터베이스에서 JSON 형식의 데이터를 가져옵니다.
+
+=== 요청 인자
+* `regionCode` - 예보가 요청되는 지리적 지역을 나타내는 고유 코드입니다. 자세한 코드는 https://example.com/region-codes[지역 코드 표]를 참조하세요.
+* `baseDate` - 예보 데이터가 요청되는 날짜입니다. YYYYMMDD 형식이어야 합니다.
+* `baseTime` - 예보 데이터가 요청되는 시간입니다. 허용되는 값은 0200, 0500, 0800, 1100, 1400, 1700, 2000, 2300입니다.
+
+=== 요청 예시
+[source,http]
+----
+GET /api/weather-forecast/short-term/details?regionCode=110&baseDate=20240101&baseTime=0800
+----
+
+=== 응답 예시
+[source,json]
+----
+{
+  "sky": "데이터 없음",
+  "baseDate": "20231231",
+  "fcstTime": "0900",
+  "wsd": 4.00,
+  "fcstDate": "20231231",
+  "wav": 0.00,
+  "pop": "30.00",
+  "pty": "데이터 없음",
+  "reh": null,
+  "tmn": null,
+  "uuu": 1.50,
+  "sno": null,
+  "vec": 338.00,
+  "tmp": 2.00,
+  "vvv": -3.70,
+  "level1": "인천광역시",
+  "pcp": "0.00",
+  "baseTime": "0800",
+  "level3": "검암경서동",
+  "tmx": null,
+  "level2": "서구"
+}
+----
+
+

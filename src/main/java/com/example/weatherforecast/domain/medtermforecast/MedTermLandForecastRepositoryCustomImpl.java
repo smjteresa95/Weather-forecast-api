@@ -29,7 +29,7 @@ public class MedTermLandForecastRepositoryCustomImpl implements MedTermLandForec
     @Override
     @Transactional
     public Optional<MedTermLandForecastWithinAWeekJsonResponseDto> findDynamicForecastWithinAWeekByRegIdAndBaseDate(MedTermForecastRequestDto requestDto,
-                                                                                                                    String baseDate) {
+                                                                                                                    String baseDateTime) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Object[]> query = cb.createQuery(Object[].class);
         Root<MedTermLandForecast> root = query.from(MedTermLandForecast.class);
@@ -44,14 +44,14 @@ public class MedTermLandForecastRepositoryCustomImpl implements MedTermLandForec
 
         query.multiselect(
                 root.get("regId"),
-                root.get("baseDate"),
+                root.get("baseDateTime"),
                 root.get("rnSt" + dayNumber + "Am"),
                 root.get("rnSt" + dayNumber + "Pm"),
                 root.get("wf" + dayNumber + "Am"),
                 root.get("wf" + dayNumber + "Pm")
         ).where(
                 cb.equal(root.get("regId"), regId),
-                cb.equal(root.get("baseDate"), baseDate)
+                cb.equal(root.get("baseDateTime"), baseDateTime)
         );
 
         try {
@@ -75,7 +75,7 @@ public class MedTermLandForecastRepositoryCustomImpl implements MedTermLandForec
     @Override
     @Transactional
     public Optional<MedTermLandForecastAfterAWeekJsonResponseDto> findDynamicForecastAfterAWeekByRegIdAndBaseDate(MedTermForecastRequestDto requestDto,
-                                                                                                                  String baseDate) {
+                                                                                                                  String baseDateTime) {
 
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<MedTermLandForecastAfterAWeekJsonResponseDto> query = cb.createQuery(MedTermLandForecastAfterAWeekJsonResponseDto.class);
@@ -91,12 +91,12 @@ public class MedTermLandForecastRepositoryCustomImpl implements MedTermLandForec
 
         query.multiselect(
                 root.get("regId"),
-                root.get("baseDate"),
+                root.get("baseDateTime"),
                 root.get("rnSt" + dayNumber),
                 root.get("wf" + dayNumber)
         ).where(
                 cb.equal(root.get("regId"), regId),
-                cb.equal(root.get("baseDate"), baseDate)
+                cb.equal(root.get("baseDateTime"), baseDateTime)
         );
 
         List<MedTermLandForecastAfterAWeekJsonResponseDto> results = entityManager.createQuery(query).getResultList();

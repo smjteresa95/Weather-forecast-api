@@ -38,12 +38,11 @@ public class ShortTermForecastApiController {
             e.printStackTrace();
             return new ResponseEntity<>("API를 불러오는데 실패했습니다.",HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
     }
 
     //인자로 baseDate, regionCode 받는다.
     @PostMapping("/ultra-short-term")
-    public ResponseEntity<?> getUltraShortTermForecastData(@ModelAttribute UltraShortTermForecastRequestDto request){
+    public ResponseEntity<?> saveUltraShortTermForecastData(@ModelAttribute UltraShortTermForecastRequestDto request){
         try {
             ultraService.saveDailyForecastDataList(request);
             return new ResponseEntity<>(HttpStatus.OK);
@@ -55,7 +54,7 @@ public class ShortTermForecastApiController {
     //인자로 baseDate, regionCode, fcstTime 받는다.
     @GetMapping("/ultra-short-term/details")
     public ResponseEntity<String> getUltraShortTermForecastDetail(@ModelAttribute UltraShortTermForecastRequestDto requestDto,
-                                                                  @RequestParam("fcstTime") String fcstTime) throws ParseException {
+                                                                  @RequestParam("fcstTime") String fcstTime) {
         String response = ultraService.generateJsonDataForGivenFcstTime(requestDto, fcstTime);
         try {
             return new ResponseEntity<>(response, HttpStatus.OK);

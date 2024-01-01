@@ -11,9 +11,9 @@ import java.util.Optional;
 public interface MedTermLandForecastRepositoryCustom {
 
     //dayNumber 값에 따라, 7일 이전의 예보를 가지고 온다.
-    Optional<MedTermLandForecastWithinAWeekJsonResponseDto> findDynamicForecastWithinAWeekByRegIdAndBaseDate(MedTermForecastRequestDto requestDto, String baseDate);
+    Optional<MedTermLandForecastWithinAWeekJsonResponseDto> findDynamicForecastWithinAWeekByRegIdAndBaseDate(MedTermForecastRequestDto requestDto, String baseDateTime);
     //dayNumber 값에 따라, 7일 이후의 예보를 가지고 온다.
-    Optional<MedTermLandForecastAfterAWeekJsonResponseDto> findDynamicForecastAfterAWeekByRegIdAndBaseDate(MedTermForecastRequestDto requestDto, String baseDate);
+    Optional<MedTermLandForecastAfterAWeekJsonResponseDto> findDynamicForecastAfterAWeekByRegIdAndBaseDate(MedTermForecastRequestDto requestDto, String baseDateTime);
 
 
 

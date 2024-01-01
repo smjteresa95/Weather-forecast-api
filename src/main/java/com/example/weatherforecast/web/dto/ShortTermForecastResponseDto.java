@@ -12,17 +12,19 @@ import java.math.BigDecimal;
 @RequiredArgsConstructor
 public class ShortTermForecastResponseDto {
     private String regionCode; //행정구역코드
-    private String baseDate; //발표일자
-    private String baseTime; //발표시각
+    private String baseDate; //기준일
+    private String baseTime; //기준시간
     private String fcstDate; //발표일자
     private String fcstTime; //발표시각
-    private BigDecimal POP;   // 강수확률 (%)
-    private BigDecimal PTY;   // 강수형태 (코드값)
-    private BigDecimal PCP;  // 1시간 강수량 (범주, 1 mm)
+
+    private String POP;   // 강수확률 (%)
+    private String PTY;   // 강수형태 (코드값)
+    private String PCP;  // 1시간 강수량 (범주, 1 mm)
     private BigDecimal REH;   // 습도 (%)
     private BigDecimal SNO;  // 1시간 신적설 (범주, 1 cm)
-    private BigDecimal SKY;   // 하늘상태 (코드값)
+    private String SKY;   // 하늘상태 (코드값)
     private BigDecimal TMP;  // 1시간 기온 (℃)
+
     private BigDecimal TMN;  // 일 최저기온 (℃)
     private BigDecimal TMX;  // 일 최고기온 (℃)
     private BigDecimal UUU;  // 풍속(동서성분) (m/s)

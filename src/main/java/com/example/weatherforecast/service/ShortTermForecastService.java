@@ -17,7 +17,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -97,43 +99,43 @@ public class ShortTermForecastService {
 
         // JSON 객체 생성
         JSONObject json = new JSONObject();
-        json.put("시", region.getLevel1());
-        json.put("구", region.getLevel2());
-        json.put("동/면/읍", region.getLevel3());
+        json.put("level1", region.getLevel1()); //시
+        json.put("level2", region.getLevel2()); //구
+        json.put("level3", region.getLevel3()); //동/면/읍
 
-        json.put("발표일자", responseDto.getBaseDate());
-        json.put("발표시각", responseDto.getBaseTime());
-        json.put("발표일자", responseDto.getFcstDate());
-        json.put("발표시각", responseDto.getFcstTime());
+        json.put("baseDate", responseDto.getBaseDate()); //기준일
+        json.put("baseTime", responseDto.getBaseTime()); //기준시간
+        json.put("fcstDate", responseDto.getFcstDate()); //발표일자
+        json.put("fcstTime", responseDto.getFcstTime()); //발표시간
 
-        json.put("강수확률 (%)", responseDto.getPOP());
+        json.put("pop", responseDto.getPOP().toString()); //강수확률 (%)
 
-        int ptyNum = responseDto.getPTY().intValue();
+        String ptyNum = responseDto.getPTY();
         String ptyCode = PrecipitationType.getDescriptionByCode(ptyNum);
-        json.put("강수형태", ptyCode);
+        json.put("pty", ptyCode); //강수형태
 
-        int pcpNum = responseDto.getPCP().intValue();
+        String pcpNum = responseDto.getPCP();
         String pcpCode;
-        if(pcpNum == 0) {
+        if(Objects.equals(pcpNum, "0")) {
             pcpCode = "강수없음";
-        } else pcpCode = responseDto.getPCP().toString();
-        json.put("1시간 강수량 (mm)", pcpCode);
+        } else pcpCode = responseDto.getPCP();
+        json.put("pcp", pcpCode); //1시간 강수량 (mm)
 
-        json.put("습도 (%)", responseDto.getREH());
-        json.put("1시간 신적설 (cm)", responseDto.getSNO());
+        json.put("reh", responseDto.getREH()); //습도 (%)
+        json.put("sno", responseDto.getSNO()); //1시간 신적설 (cm)
 
-        int skyNum =  responseDto.getSKY().intValue();
+        String skyNum =  responseDto.getSKY();
         String skyCode = SkyCondition.getDescriptionByCode(skyNum);
-        json.put("하늘상태", skyCode);
+        json.put("sky", skyCode); //하늘상태
 
-        json.put("1시간 기온 (℃)", responseDto.getTMP());
-        json.put("일 최저기온 (℃)", responseDto.getTMN());
-        json.put("일 최고기온 (℃)", responseDto.getTMX());
-        json.put("풍속(동서성분) (m/s)", responseDto.getUUU());
-        json.put("풍속(남북성분) (m/s)", responseDto.getVVV());
-        json.put("파고 (M)", responseDto.getWAV());
-        json.put("풍향 (deg)", responseDto.getVEC());
-        json.put("풍속 (m/s)", responseDto.getWSD());
+        json.put("tmp", responseDto.getTMP()); //1시간 기온 (℃)
+        json.put("tmn", responseDto.getTMN()); //일 최저기온 (℃)
+        json.put("tmx", responseDto.getTMX()); //일 최고기온 (℃)
+        json.put("uuu", responseDto.getUUU()); //풍속(동서성분) (m/s)
+        json.put("vvv", responseDto.getVVV()); //풍속(남북성분) (m/s)
+        json.put("wav", responseDto.getWAV()); //파고 (M)
+        json.put("vec", responseDto.getVEC()); //풍향 (deg)
+        json.put("wsd", responseDto.getWSD()); //풍속 (m/s)
 
         return json.toString();
 
@@ -141,25 +143,29 @@ public class ShortTermForecastService {
 
     private void updateShortTermForecast(ShortTermForecastResponseDto responseDto) {
         repository.updateShortTermForecast(
+
+                responseDto.getRegionCode(),
                 responseDto.getBaseDate(),
                 responseDto.getBaseTime(),
-                responseDto.getRegionCode(),
                 responseDto.getFcstDate(),
                 responseDto.getFcstTime(),
-                responseDto.getPCP(),
-                responseDto.getSKY(),
-                responseDto.getREH(),
-                responseDto.getUUU(),
-                responseDto.getVVV(),
-                responseDto.getVEC(),
-                responseDto.getWSD(),
+
                 responseDto.getPOP(),
                 responseDto.getPTY(),
+                responseDto.getPCP(),
+                responseDto.getREH(),
                 responseDto.getSNO(),
+                responseDto.getSKY(),
                 responseDto.getTMP(),
+
                 responseDto.getTMN(),
                 responseDto.getTMX(),
-                responseDto.getWAV());
+
+                responseDto.getUUU(),
+                responseDto.getVVV(),
+                responseDto.getWAV(),
+                responseDto.getVEC(),
+                responseDto.getWSD());
     }
 
 }
