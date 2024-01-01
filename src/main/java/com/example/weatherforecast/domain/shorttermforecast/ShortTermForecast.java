@@ -34,39 +34,27 @@ public class ShortTermForecast {
     private String fcstTime; //발표시각
 
 
-    @Column(name = "hourly_precipitation", precision = 5, scale = 2)
-    private BigDecimal pcp; // 1시간 강수량 (범주 1 mm)
+    @Column(name = "precipitation_probability")
+    private String pop; // 강수확률 (%)
 
-    @Column(name = "sky_condition")
-    private BigDecimal sky; // 하늘상태 (코드값)
+    @Column(name = "precipitation_type")
+    private String pty; // 강수형태 (코드값)
+
+    @Column(name = "hourly_precipitation")
+    private String pcp; // 1시간 강수량 (범주 1 mm)
 
     @Column(name = "humidity", precision = 5, scale = 2)
     private BigDecimal reh; // 습도
 
-    @Column(name = "east_west_wind_component", precision = 5, scale = 2)
-    private BigDecimal uuu; // 동서바람성분
-
-    @Column(name = "north_south_wind_component", precision = 5, scale = 2)
-    private BigDecimal vvv; // 남북바람성분
-
-    @Column(name = "wind_direction", precision = 5, scale = 2)
-    private BigDecimal vec; // 풍향
-
-    @Column(name = "wind_speed", precision = 5, scale = 2)
-    private BigDecimal wsd; // 풍속
-
-
-    @Column(name = "precipitation_probability", precision = 5, scale = 2)
-    private BigDecimal pop; // 강수확률 (%)
-
-    @Column(name = "precipitation_type")
-    private BigDecimal pty; // 강수형태 (코드값)
-
     @Column(name = "hourly_new_snow", precision = 5, scale = 2)
     private BigDecimal sno; // 1시간 신적설 (범주 1 cm)
 
+    @Column(name = "sky_condition")
+    private String sky; // 하늘상태 (코드값)
+
     @Column(name = "hourly_temperature", precision = 5, scale = 2)
     private BigDecimal tmp; // 1시간 기온 (℃)
+
 
     @Column(name = "min_temperature", precision = 5, scale = 2)
     private BigDecimal tmn; // 일 최저기온 (℃)
@@ -74,7 +62,19 @@ public class ShortTermForecast {
     @Column(name = "max_temperature", precision = 5, scale = 2)
     private BigDecimal tmx; // 일 최고기온 (℃)
 
+    @Column(name = "east_west_wind_component", precision = 5, scale = 2)
+    private BigDecimal uuu; // 동서바람성분
+
+    @Column(name = "north_south_wind_component", precision = 5, scale = 2)
+    private BigDecimal vvv; // 남북바람성분
+
     @Column(name = "wave_height", precision = 5, scale = 2)
     private BigDecimal wav; // 파고 (M)
+
+    @Column(name = "wind_direction", precision = 5, scale = 2)
+    private BigDecimal vec; // 풍향
+
+    @Column(name = "wind_speed", precision = 5, scale = 2)
+    private BigDecimal wsd; // 풍속
 
 }

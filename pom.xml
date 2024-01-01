@@ -46,11 +46,19 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.restdocs</groupId>
 			<artifactId>spring-restdocs-mockmvc</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.asciidoctor/asciidoctor-maven-plugin -->
+		<dependency>
+			<groupId>org.asciidoctor</groupId>
+			<artifactId>asciidoctor-maven-plugin</artifactId>
+			<version>2.2.4</version>
+		</dependency>
+
 
 		<!-- https://mvnrepository.com/artifact/junit/junit -->
 		<dependency>
@@ -81,9 +89,6 @@
 			<version>5.2.5</version>
 		</dependency>
 
-
-
-
 	</dependencies>
 
 	<build>
@@ -113,6 +118,33 @@
 					</dependency>
 				</dependencies>
 			</plugin>
+
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.7</version>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>
+								${project.build.outputDirectory}/static/docs
+							</outputDirectory>
+							<resources>
+								<resource>
+									<directory>
+										${project.build.directory}/generated-docs
+									</directory>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>

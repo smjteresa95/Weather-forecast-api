@@ -44,7 +44,4 @@ public class ShortTermForecastApiClientTest {
         assertEquals(new BigDecimal("0"), dto.getWAV());
 
     }
-
-
-
 }

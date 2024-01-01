@@ -2,6 +2,7 @@ package com.example.weatherforecast.domain.medtermforecast;
 
 import com.example.weatherforecast.web.dto.MedTermForecastRequestDto;
 import com.example.weatherforecast.web.dto.MedTermLandForecastWithinAWeekJsonResponseDto;
+import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -31,12 +32,12 @@ public class MedTermLandForecastRepositoryCustomImplTest {
 
     final String BASEDATE = "20231231";
 
-    @BeforeEach
+    @Before
     @Transactional
     void setUp(){
         MedTermLandForecast forecast = MedTermLandForecast.builder()
                 .regId("11B00000")
-                .baseDate(BASEDATE)
+                .baseDateTime(BASEDATE)
                 .rnSt3Am(30)
                 .rnSt3Pm(10)
                 .rnSt8(20)
