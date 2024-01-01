@@ -23,18 +23,22 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @DataJpaTest
 @ActiveProfiles("test")
 public class MedTermLandForecastRepositoryCustomImplTest {
-    @Autowired
-    private TestEntityManager entityManager;
 
     @Qualifier("medTermLandForecastRepositoryCustomImpl")
     @Autowired
-    private MedTermLandForecastRepositoryCustom repository;
+    private MedTermLandForecastRepositoryCustom customRepository;
+    @Autowired
+    private MedTermLandForecastRepository repository;
 
     final String BASEDATE = "20231231";
 
-    @Before
-    @Transactional
-    void setUp(){
+
+    @Test
+    void testFindDynamicForecastWithinAWeekByRegIdAndDateAndDayNumber(){
+
+        // Given
+        MedTermForecastRequestDto requestDto = new MedTermForecastRequestDto("11B00000", 3);
+
         MedTermLandForecast forecast = MedTermLandForecast.builder()
                 .regId("11B00000")
                 .baseDateTime(BASEDATE)
@@ -45,18 +49,10 @@ public class MedTermLandForecastRepositoryCustomImplTest {
                 .wf3Pm("맑음")
                 .wf8("맑음")
                 .build();
-        entityManager.persist(forecast);
-        entityManager.flush();
-    }
-
-    @Test
-    void testFindDynamicForecastWithinAWeekByRegIdAndDateAndDayNumber(){
-
-        // Given
-        MedTermForecastRequestDto requestDto = new MedTermForecastRequestDto("11B00000", 3);
+        repository.save(forecast);
 
         // When
-        Optional<MedTermLandForecastWithinAWeekJsonResponseDto> result = repository.findDynamicForecastWithinAWeekByRegIdAndBaseDate(requestDto, BASEDATE);
+        Optional<MedTermLandForecastWithinAWeekJsonResponseDto> result = customRepository.findDynamicForecastWithinAWeekByRegIdAndBaseDate(requestDto, BASEDATE);
         System.out.println("받아온 값: " + result.toString());
 
         // Then

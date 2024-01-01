@@ -24,6 +24,8 @@ import org.springframework.web.context.WebApplicationContext;
 
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
+import static org.springframework.restdocs.operation.preprocess.Preprocessors.preprocessResponse;
+import static org.springframework.restdocs.operation.preprocess.Preprocessors.prettyPrint;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
 import static org.springframework.restdocs.request.RequestDocumentation.queryParameters;
@@ -73,6 +75,7 @@ public class ShortTermForecastControllerTest {
                 .andExpect(status().isOk())
                 .andDo(document(
                         "/ultra-short-term/save",
+                        preprocessResponse(prettyPrint()),
                         requestFields(
                                 fieldWithPath("regionCode").description("지역코드"),
                                 fieldWithPath("baseDate").description("기준날짜")
@@ -92,6 +95,7 @@ public class ShortTermForecastControllerTest {
                 .andExpect(status().isOk())
                 .andDo(document(
                         "/short-term/save",
+                        preprocessResponse(prettyPrint()),
                         requestFields(
                                 fieldWithPath("regionCode").description("지역코드"),
                                 fieldWithPath("baseDate").description("기준날짜"),
@@ -117,6 +121,7 @@ public class ShortTermForecastControllerTest {
                 .andExpect(status().isOk())
                 .andDo(document(
                         "/short-term/get",
+                        preprocessResponse(prettyPrint()),
                         queryParameters(
                                 parameterWithName("regionCode").description("지역코드"),
                                 parameterWithName("baseDate").description("기준날짜"),
@@ -174,6 +179,7 @@ public class ShortTermForecastControllerTest {
                 ).andExpect(status().isOk())
                 .andDo(document(
                         "/ultra-short-term/get",
+                        preprocessResponse(prettyPrint()),
                         queryParameters(
                                 parameterWithName("regionCode").description("지역코드"),
                                 parameterWithName("baseDate").description("기준 날짜"),

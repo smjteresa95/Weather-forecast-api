@@ -26,6 +26,8 @@ import java.util.Map;
 
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
+import static org.springframework.restdocs.operation.preprocess.Preprocessors.preprocessResponse;
+import static org.springframework.restdocs.operation.preprocess.Preprocessors.prettyPrint;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -99,6 +101,7 @@ public class MedTermForecastControllerTest {
                 ).andExpect(status().isOk())
                 .andDo(document(
                         "/med-term/temp-forecast/get",
+                        preprocessResponse(prettyPrint()),
                         requestFields(
                                 fieldWithPath("regId").description("지역코드"),
                                 fieldWithPath("dayNumber").description("해당 날짜 후")
@@ -138,6 +141,7 @@ public class MedTermForecastControllerTest {
         ).andExpect(status().isOk())
                 .andDo(document(
                         "/med-term/land-forecast/get/after-a-week",
+                        preprocessResponse(prettyPrint()),
                         requestFields(
                                 fieldWithPath("regId").description("지역코드"),
                                 fieldWithPath("dayNumber").description("해당 날짜 후")
@@ -170,7 +174,8 @@ public class MedTermForecastControllerTest {
                         .accept(MediaType.APPLICATION_JSON)
                 ).andExpect(status().isOk())
                 .andDo(document(
-                                "/med-term/land-forecast/land/get/within-a-week",
+                                "/med-term/land-forecast/get/within-a-week",
+                        preprocessResponse(prettyPrint()),
                                 requestFields(
                                         fieldWithPath("regId").description("지역코드"),
                                         fieldWithPath("dayNumber").description("해당 날짜 후")

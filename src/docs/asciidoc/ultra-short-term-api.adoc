@@ -1,1 +1,39 @@
-== 초단기예보 저장 및 조회
+== 초단기예보 저장 및 조회 API
+기상청 OPEN API에서 초단기예보 데이터를 얻어와 데이터베이스에 저장합니다.
+
+== 초단기예보 저장
+
+=== 요청구조
+include::{snippets}/ultra-short-term/save/http-request.adoc[]
+
+== 요청 파라미터
+include::{snippets}/ultra-short-term/save/request-fields.adoc[]
+include::{snippets}/ultra-short-term/save/request-body.adoc[]
+
+* `regionCode` - 예보가 요청되는 지리적 지역을 나타내는 고유 코드입니다. 자세한 코드는 https://example.com/region-codes[지역 코드 표]를 참조하세요.
+* `baseDate` - 예보 데이터가 요청되는 날짜입니다. YYYYMMDD 형식이어야 합니다.
+
+=== 응답결과
+예보 데이터 저장 성공 시 HTTP 상태 200 OK를 반환합니다.
+include::{snippets}/ultra-short-term/save/http-response.adoc[]
+
+== 단기예보 조회
+인자로 받은 `regionCode`, `baseDate` 매개변수를 기반으로 데이터베이스에서 JSON 형식의 데이터를 가져옵니다.
+
+=== HTTP 요청
+include::{snippets}/ultra-short-term/get/http-request.adoc[]
+
+=== 호출 요청 인자
+* `regionCode` - 예보가 요청되는 지리적 지역을 나타내는 고유 코드입니다. 자세한 코드는 https://docs.google.com/spreadsheets/d/1wrFcpkXZLwSQzImgrvZnTkUcA6_gM4au/edit?usp=sharing&ouid=113873634025863855868&rtpof=true&sd=true[지역 코드 표]를 참조하세요.
+* `baseDate` - 예보 데이터가 요청되는 날짜입니다. YYYYMMDD 형식이어야 합니다.
+* `baseTime` - 예보 데이터가 요청되는 시간입니다. HHMM 형식이며, 허용되는 값은 0000, 0100, 0200, 0300, 0400 ... 2200, 2300 입니다.
+
+
+=== 요청 예시
+include::{snippets}/ultra-short-term/get/curl-request.adoc[]
+
+=== 응답 파라미터
+include::{snippets}/ultra-short-term/get/response-fields.adoc[]
+
+=== 응답예시
+include::{snippets}/ultra-short-term/get/response-body.adoc[]

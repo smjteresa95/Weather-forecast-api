@@ -1,1 +1,33 @@
-== 중기육상예보 저장 및 조회
+= 중기육상예보 저장 및 조회 API
+
+기상청 OPEN API에서 중기육상예보 데이터를 얻어와 데이터베이스에 저장합니다.
+
+== 중기육상예보 저장
+
+=== 요청구조
+include::{snippets}/med-term/land-forecast/save/http-request.adoc[]
+
+== 요청 파라미터
+`regionCode` - 예보가 요청되는 지리적 지역을 나타내는 고유 코드입니다. 자세한 코드는 https://docs.google.com/spreadsheets/d/1IXZogqaESO7pLGQFIhN0Ic3A16VpqwXA/edit?usp=sharing&ouid=113873634025863855868&rtpof=true&sd=true[지역 코드 표]를 참조하세요.
+
+=== 응답결과git
+include::{snippets}/med-term/land-forecast/save/http-response.adoc[]
+
+== 중기육상예보 조회
+현재날짜를 기준으로 dayNumber 후의 중기 육상예보를 DB에서 얻어옵니다.
+
+=== HTTP 요청
+include::{snippets}/med-term/land-forecast/get/after-a-week/http-request.adoc[]
+=== 요청 파라미터
+include::{snippets}/med-term/land-forecast/get/after-a-week/request-body.adoc[]
+include::{snippets}/med-term/land-forecast/get/after-a-week/request-fields.adoc[]
+
+== 현재날짜를 기준으로 3-8일 후의 날씨를 얻어올 때의 응답내용입니다.
+include::{snippets}/med-term/land-forecast/get/within-a-week/response-fields.adoc[]
+=== 응답예시
+include::{snippets}/med-term/land-forecast/get/within-a-week/response-body.adoc[]
+
+== 현재날짜를 기준으로 8-9일 후의 날씨를 얻어올 때의 응답내용입니다.
+include::{snippets}/med-term/land-forecast/get/after-a-week/response-fields.adoc[]
+=== 응답예시
+include::{snippets}/med-term/land-forecast/get/after-a-week/response-body.adoc[]
