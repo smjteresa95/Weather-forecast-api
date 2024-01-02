@@ -7,8 +7,9 @@
 
 ----
 
-## [API 문서]
-http://localhost:8080/docs/index.html
+## [API 문서](./src/main/resources/static/html/docs/index.html)
+- [API 명세 문서](./src/main/resources/static/html/docs/index.html)   
+- http://localhost:8080/docs/index.html
 
 ### Spring REST doc snippet의 생성
 controller 테스트 코드를 돌리면 `target/generated-snippets` 경로에 자동으로 snippet이 생성된다.
