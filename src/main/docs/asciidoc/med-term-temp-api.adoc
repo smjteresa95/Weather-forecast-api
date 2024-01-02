@@ -1,8 +1,8 @@
-= 중기기온예보 저장 및 조회 API
+= [중기기온예보 저장 및 조회 API]
 
 기상청 OPEN API에서 중기기온예보 데이터를 얻어와 데이터베이스에 저장합니다.
 
-== 중기기온예보 저장
+== [중기기온예보 저장]
 
 === 요청구조
 include::{snippets}/med-term/temp-forecast/save/http-request.adoc[]
@@ -20,7 +20,7 @@ POST http://localhost:8080/api/weather-forecast/med-term/temp?regId=11D20501
 예보 데이터 저장 성공 시 HTTP 상태 200 OK를 반환합니다.
 include::{snippets}/med-term/temp-forecast/save/http-response.adoc[]
 
-== 중기육상예보 조회
+== [중기육상예보 조회]
 현재날짜를 기준으로 dayNumber 후의 중기기온예보를 DB에서 얻어옵니다.
 
 === HTTP 조회요청
