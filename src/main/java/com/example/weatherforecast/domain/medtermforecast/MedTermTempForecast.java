@@ -22,17 +22,17 @@ public class MedTermTempForecast {
     private String baseDateTime; //기준 날짜와 예보팔표시간
 
     @Column(name = "ta_max3")
-    private Integer taMax3;
+    private Integer taMax3; //3일 후 예상최저기온(℃)
     @Column(name = "ta_max3_high")
-    private Integer taMax3High;
+    private Integer taMax3High; //3일 후 예상최저기온 하한 범위
     @Column(name = "ta_max3_low")
-    private Integer taMax3Low;
+    private Integer taMax3Low; //3일 후 예상최저기온 상한 범위
     @Column(name = "ta_min3")
-    private Integer taMin3;
+    private Integer taMin3; //3일 후 예상최고기온(℃)
     @Column(name = "ta_min3_high")
-    private Integer taMin3High;
+    private Integer taMin3High; //3일 후 예상최고기온 하한 범위
     @Column(name = "ta_min3_low")
-    private Integer taMin3Low;
+    private Integer taMin3Low; //3일 선택일 후 예상최고기온 상한 범위
 
     @Column(name = "ta_max4")
     private Integer taMax4;
