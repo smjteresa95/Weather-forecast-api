@@ -108,7 +108,7 @@ http://apis.data.go.kr/1360000/MidFcstInfoService/getMidLandFcst?serviceKey=인�
 0200, 0500, 0800, 1100, 1400, 1700, 2000, 2300 (1일 8회)    
 
 **요청예시**    
-`http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=%EC%9D%B8%EC%A6%9D%ED%82%A4&numOfRows=10&pageNo=1&base_date=20210628&base_time=0500&nx=55&ny=127
+`http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=%EC%9D%B8%EC%A6%9D%ED%82%A4&numOfRows=10&pageNo=1&base_date=20210628&base_time=0500&nx=55&ny=127`
 
 
 ### - 초단기예보
