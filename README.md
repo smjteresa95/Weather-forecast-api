@@ -1,14 +1,14 @@
-# 기상청  OPEN API를 이용한 날씨 예보 저장 및 조회 API
+# [기상청  OPEN API를 이용한 날씨 예보 저장 및 조회 API](https://smjteresa95.github.io/Weather-forecast-api/)
 
 단기예보, 초단기예보, 중기예보(육상예보, 기온예보) 데이터를 가지고 와 DB에 저장/조회 할 수 있습니다.
 
-### [DB 테이블 명세](./src/main/docs/DESCRIPTION.md)
+### [DB 테이블 명세](https://smjteresa95.github.io/Weather-forecast-api/src/main/docs/DESCRIPTION.html)
 
 
 ----
 
-## [API 문서](./src/main/resources/static/html/docs/index.html)
-- [API 명세 문서](./src/main/resources/static/html/docs/index.html)   
+## [API 문서](https://smjteresa95.github.io/Weather-forecast-api/src/main/resources/static/html/docs/index.html)
+- [API 명세 문서](https://smjteresa95.github.io/Weather-forecast-api/src/main/resources/static/html/docs/index.html)   
 - http://localhost:8080/docs/index.html
 
 ### Spring REST doc snippet의 생성
